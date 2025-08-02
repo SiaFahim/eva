@@ -248,7 +248,33 @@ terraform.rc
 gcp-credentials.json
 service-account-key.json
 
+# GCP Account Information (prevent exposure)
+**/project-info.json
+**/billing-info.json
+**/account-details.*
+**/*project-id*
+**/*billing-account*
+**/*organization-id*
+**/gcp-config.local
+**/deployment-actual.md
+**/instance-details.md
+
 # SSH keys (keep public keys, ignore private keys)
 *.pem
 *.key
 !*.pub
+
+# Security - Sensitive information
+**/secrets/
+**/credentials/
+**/*secret*
+**/*password*
+**/*token*
+**/deployment-summary.md
+**/instance-info.md
+**/*-credentials.*
+**/*-secrets.*
+
+# IP addresses and hostnames (prevent accidental exposure)
+**/hosts.local
+**/ssh_config.local

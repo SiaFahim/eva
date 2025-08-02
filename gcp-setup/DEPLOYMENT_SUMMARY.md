@@ -7,29 +7,29 @@ Your Eva DeepSeek-V3 development environment has been successfully deployed to G
 ## 📊 Infrastructure Details
 
 ### **Instance Configuration**
-- **Name**: `eva-dev-dev`
+- **Name**: `[PROJECT_ID]-eva-[ENVIRONMENT]`
 - **Type**: `n1-standard-4` (4 vCPUs, 15GB RAM)
-- **Zone**: `us-central1-a`
+- **Zone**: `[CONFIGURED_ZONE]`
 - **Preemptible**: Yes (60-91% cost savings)
-- **External IP**: `34.9.120.163`
+- **External IP**: `[CONFIGURED_DURING_DEPLOYMENT]`
 - **Internal IP**: `10.0.0.2`
 
 ### **Storage**
 - **Boot Disk**: 100GB SSD
 - **Additional Disk**: 100GB SSD mounted at `/home/eva/workspace`
-- **Cloud Storage**: `eva-deepseek-dev-eva-dev-data`
+- **Cloud Storage**: `[PROJECT_ID]-eva-[ENVIRONMENT]-data`
 
 ### **Network & Security**
-- **VPC**: `eva-dev-network`
-- **Subnet**: `eva-dev-subnet` (10.0.0.0/24)
-- **SSH Access**: Restricted to your IP (187.190.190.250/32)
+- **VPC**: `eva-[ENVIRONMENT]-network`
+- **Subnet**: `eva-[ENVIRONMENT]-subnet` (10.0.0.0/24)
+- **SSH Access**: Restricted to your IP ([YOUR_IP_ADDRESS]/32)
 - **Ports**: 22 (SSH), 8888 (Jupyter), 6006 (TensorBoard), 8080 (Custom)
 
 ## 🚀 Quick Start Guide
 
 ### **1. Connect via SSH**
 ```bash
-gcloud compute ssh eva@eva-dev-dev --zone=us-central1-a
+gcloud compute ssh eva@[INSTANCE_NAME] --zone=[ZONE]
 ```
 
 ### **2. Connect via VS Code**
@@ -42,7 +42,7 @@ gcloud compute ssh eva@eva-dev-dev --zone=us-central1-a
 ### **3. Access Jupyter Lab**
 Open your browser and navigate to:
 ```
-http://34.9.120.163:8888
+http://[YOUR_INSTANCE_IP]:8888
 ```
 
 ### **4. Activate Development Environment**
@@ -85,13 +85,13 @@ source ~/activate_env.sh
 ### **Manual Management**
 ```bash
 # Start instance
-gcloud compute instances start eva-dev-dev --zone=us-central1-a
+gcloud compute instances start [INSTANCE_NAME] --zone=[ZONE]
 
 # Stop instance
-gcloud compute instances stop eva-dev-dev --zone=us-central1-a
+gcloud compute instances stop [INSTANCE_NAME] --zone=[ZONE]
 
 # Check status
-gcloud compute instances list --filter="name:eva-dev-dev"
+gcloud compute instances list --filter="name:[INSTANCE_NAME]"
 ```
 
 ## 📁 File Synchronization
@@ -117,10 +117,10 @@ git pull
 ### **Method 3: Cloud Storage**
 ```bash
 # Upload to bucket
-gsutil -m cp -r local_folder/ gs://eva-deepseek-dev-eva-dev-data/
+gsutil -m cp -r local_folder/ gs://[PROJECT_ID]-eva-[ENVIRONMENT]-data/
 
 # Download from bucket
-gsutil -m cp -r gs://eva-deepseek-dev-eva-dev-data/folder/ .
+gsutil -m cp -r gs://[PROJECT_ID]-eva-[ENVIRONMENT]-data/folder/ .
 ```
 
 ## 🔧 VS Code Remote Development
@@ -129,7 +129,7 @@ gsutil -m cp -r gs://eva-deepseek-dev-eva-dev-data/folder/ .
 Your SSH config has been updated with:
 ```
 Host eva-dev
-    HostName 34.9.120.163
+    HostName [YOUR_INSTANCE_IP]
     User eva
     IdentityFile ~/.ssh/google_compute_engine
     ServerAliveInterval 60
@@ -175,25 +175,25 @@ Host eva-dev
 gcloud compute os-login ssh-keys add --key-file=~/.ssh/google_compute_engine.pub
 
 # Connect with verbose output
-ssh -v eva@34.9.120.163
+ssh -v eva@[YOUR_INSTANCE_IP]
 ```
 
 ### **Jupyter Not Accessible**
 ```bash
 # Check service status
-gcloud compute ssh eva@eva-dev-dev --zone=us-central1-a --command="systemctl status eva-jupyter"
+gcloud compute ssh eva@[INSTANCE_NAME] --zone=[ZONE] --command="systemctl status eva-jupyter"
 
 # Restart service
-gcloud compute ssh eva@eva-dev-dev --zone=us-central1-a --command="sudo systemctl restart eva-jupyter"
+gcloud compute ssh eva@[INSTANCE_NAME] --zone=[ZONE] --command="sudo systemctl restart eva-jupyter"
 ```
 
 ### **Instance Not Starting**
 ```bash
 # Check instance status
-gcloud compute instances describe eva-dev-dev --zone=us-central1-a
+gcloud compute instances describe [INSTANCE_NAME] --zone=[ZONE]
 
 # View startup logs
-gcloud compute ssh eva@eva-dev-dev --zone=us-central1-a --command="sudo tail -f /var/log/eva-startup.log"
+gcloud compute ssh eva@[INSTANCE_NAME] --zone=[ZONE] --command="sudo tail -f /var/log/eva-startup.log"
 ```
 
 ## 📚 Next Steps

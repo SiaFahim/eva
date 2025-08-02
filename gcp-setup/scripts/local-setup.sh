@@ -372,7 +372,7 @@ setup_ssh_config() {
 
 # Eva DeepSeek-V3 Development Environment
 Host eva-dev
-    HostName 34.9.120.163
+    HostName [YOUR_INSTANCE_IP]
     User eva
     IdentityFile ~/.ssh/google_compute_engine
     ServerAliveInterval 60

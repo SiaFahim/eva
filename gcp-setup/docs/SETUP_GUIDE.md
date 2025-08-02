@@ -76,7 +76,7 @@ Once deployed, you can connect via:
 
 **SSH:**
 ```bash
-gcloud compute ssh eva@eva-dev-dev --zone=us-central1-a
+gcloud compute ssh eva@[INSTANCE_NAME] --zone=[ZONE]
 ```
 
 **VS Code Remote:**
@@ -141,10 +141,10 @@ Access at `http://INSTANCE_IP:8888`
 ### Manual Management
 ```bash
 # Start instance
-gcloud compute instances start eva-dev-dev --zone=us-central1-a
+gcloud compute instances start [INSTANCE_NAME] --zone=[ZONE]
 
 # Stop instance
-gcloud compute instances stop eva-dev-dev --zone=us-central1-a
+gcloud compute instances stop [INSTANCE_NAME] --zone=[ZONE]
 
 # Check status
 gcloud compute instances list
