@@ -2,7 +2,7 @@
 # Copy this file to terraform.tfvars and customize for your setup
 
 # GCP Project Configuration
-project_id = "eva-deepseek-dev"
+project_id = "your-gcp-project-id"
 region     = "us-central1"  # Choose region with GPU availability
 zone       = "us-central1-a"
 
