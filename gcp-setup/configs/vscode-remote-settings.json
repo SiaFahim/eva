@@ -1,0 +1,60 @@
+{
+    "python.defaultInterpreterPath": "/opt/conda/envs/eva/bin/python",
+    "python.terminal.activateEnvironment": true,
+    "python.formatting.provider": "black",
+    "python.linting.enabled": true,
+    "python.linting.flake8Enabled": true,
+    "python.linting.mypyEnabled": true,
+    "python.linting.pylintEnabled": false,
+    "python.analysis.typeCheckingMode": "basic",
+    "jupyter.jupyterServerType": "remote",
+    "jupyter.notebookFileRoot": "${workspaceFolder}",
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/*/**": true,
+        "**/__pycache__/**": true,
+        "**/.*cache/**": true,
+        "**/datasets/**": true,
+        "**/models/**": true,
+        "**/*.log": true
+    },
+    "files.exclude": {
+        "**/__pycache__": true,
+        "**/.pytest_cache": true,
+        "**/.mypy_cache": true,
+        "**/.*cache": true
+    },
+    "terminal.integrated.defaultProfile.linux": "bash",
+    "terminal.integrated.profiles.linux": {
+        "bash": {
+            "path": "/bin/bash",
+            "args": ["-c", "source /home/eva/activate_env.sh && exec bash"]
+        }
+    },
+    "terminal.integrated.cwd": "/home/eva/workspace",
+    "workbench.startupEditor": "none",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": true
+    },
+    "git.autofetch": true,
+    "git.enableSmartCommit": true,
+    "extensions.ignoreRecommendations": false,
+    "python.testing.pytestEnabled": true,
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestArgs": [
+        "."
+    ],
+    "remote.SSH.remotePlatform": {
+        "eva-dev": "linux"
+    },
+    "remote.SSH.defaultExtensions": [
+        "ms-python.python",
+        "ms-toolsai.jupyter",
+        "ms-python.black-formatter",
+        "ms-python.isort",
+        "ms-python.flake8",
+        "ms-python.mypy-type-checker"
+    ]
+}
