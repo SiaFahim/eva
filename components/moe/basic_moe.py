@@ -1,24 +1,27 @@
 """
-Basic Mixture-of-Experts (MoE) Implementation for DeepSeek-V3
+Basic and Advanced Mixture-of-Experts (MoE) Implementation for DeepSeek-V3
 
-This module implements a basic MoE layer that serves as the foundation for
-DeepSeek-V3's advanced MoE architecture. It includes expert routing, load
-balancing, and utilization tracking.
+This module implements both basic and advanced MoE layers for DeepSeek-V3:
+- BasicMoELayer: Foundation MoE with standard routing and load balancing
+- DeepSeekMoELayer: Advanced MoE with 256 routed + 1 shared expert architecture
 
 Key Features:
 - Configurable number of experts (scales from 4 to 256+)
 - Top-k expert selection with learnable routing
-- Load balancing mechanisms to prevent expert collapse
+- Auxiliary-loss-free load balancing with bias adjustment
 - Expert utilization tracking for monitoring
 - Efficient batched expert computation
+- Shared + routed expert architecture
+- Affinity-based routing with expert centroids
 
 Mathematical Foundation:
 Traditional FFN: Y = FFN(X) for all tokens
-MoE: Y = Σ(i=1 to k) w_i * Expert_i(X) where w_i = Router(X)
+Basic MoE: Y = Σ(i=1 to k) w_i * Expert_i(X) where w_i = Router(X)
+DeepSeek MoE: Y = SharedExpert(X) + Σ(i=1 to k) w_i * RoutedExpert_i(X)
 This allows specialization while maintaining computational efficiency.
 
 Author: Eva DeepSeek-V3 Project
-Date: 2025-08-03
+Date: 2025-08-05
 """
 
 import tensorflow as tf
